@@ -128,3 +128,47 @@ weather_df %>%
     ## Warning: Removed 15 rows containing missing values (geom_point).
 
 ![](viz_part_02_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+## Themes
+
+``` r
+ggp_weather =
+  weather_df %>% 
+  ggplot(aes( x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    x = "Minimun Daily Temp (C)" ,
+    y = "Maximum Daily Temp (C)" , 
+    title = "Scatterplot of daily temp extremes" ,
+    caption = "Data come from the rnoaa package"
+  ) +
+  viridis::scale_color_viridis( 
+    name = "Location",
+    discrete = TRUE)
+```
+
+``` r
+ggp_weather +
+  theme_minimal()
+```
+
+    ## Warning: Removed 15 rows containing missing values (geom_point).
+
+![](viz_part_02_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+``` r
+  theme(legend.position = "bottom")
+```
+
+    ## List of 1
+    ##  $ legend.position: chr "bottom"
+    ##  - attr(*, "class")= chr [1:2] "theme" "gg"
+    ##  - attr(*, "complete")= logi FALSE
+    ##  - attr(*, "validate")= logi TRUE
+
+-   Order matters `theme_minimal()` wiil change the whole plot, usually
+    put at the frount of the `theme` statement.
+    `theme(legend.position = "bottom")` will change the position of
+    legend, usually put at the end of the `theme` statement. If
+    `theme_minimal()`put behind the `theme(legend.position = "bottom")`,
+    the plot will be regraph.
